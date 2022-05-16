@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { Input, InputWrapper } from "./SearchBar.styles";
+import { Logo, Input, InputWrapper, TMDBLogo } from "./Header.styles";
+import logo from "../../images/TMDB Logo.svg";
 
-const SearchBar = ({ setSearchQuery }) => {
+const Header = ({ setSearchQuery }) => {
 	const [state, setState] = useState("");
 
 	const handleChange = (event) => {
@@ -25,12 +26,14 @@ const SearchBar = ({ setSearchQuery }) => {
 	return (
 		<>
 			<InputWrapper>
+				<Logo>Movie Land</Logo>
 				<Input
 					type={"text"}
 					placeholder={"Search Movie"}
 					onChange={handleChange}
 					value={state}
 				/>
+				<TMDBLogo src={logo} />
 			</InputWrapper>
 		</>
 	);
@@ -39,4 +42,4 @@ const SearchBar = ({ setSearchQuery }) => {
 Input.prototype = {
 	callback: PropTypes.func,
 };
-export default SearchBar;
+export default Header;

@@ -3,8 +3,8 @@ import { API_URL, API_KEY, SEARCH_URL, POPULAR_URL } from "../config/config";
 const apiSettings = {
 	fetchMovies: async (searchQuery, page) => {
 		const endpoint = searchQuery
-			? `${SEARCH_URL}${searchQuery}&page${page}`
-			: `${POPULAR_URL}&page${page}`;
+			? `${SEARCH_URL}${searchQuery}&page=${page}`
+			: `${POPULAR_URL}&page=${page}`;
 		return await (await fetch(endpoint)).json();
 	},
 

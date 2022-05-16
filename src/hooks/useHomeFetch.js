@@ -32,10 +32,12 @@ const HomeFetch = () => {
 		setLoading(false);
 	};
 
+	// Initial page/first page
 	useEffect(() => {
 		fetchMovies(1);
 	}, []);
 
+	// Search Movies
 	useEffect(() => {
 		if (!searchQuery) {
 			const sessionSate = isPersistedSate("homeMovieState");
@@ -49,14 +51,17 @@ const HomeFetch = () => {
 		fetchMovies(1, searchQuery);
 	}, [searchQuery]);
 
+	// Load More Movie
 	useEffect(() => {
 		if (!isLoadingMore) {
 			return;
 		}
+
 		fetchMovies(state.page + 1, searchQuery);
 		setIsLoadingMore(false);
 	}, [isLoadingMore, searchQuery, state.page]);
 
+	// Cache data to storage
 	useEffect(() => {
 		if (!searchQuery) {
 			return sessionStorage.setItem("homeMovieState", JSON.stringify(state));

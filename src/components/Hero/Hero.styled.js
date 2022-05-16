@@ -1,33 +1,54 @@
 import styled from "styled-components";
 import { IMAGE_URL, BACKDROP_SIZE } from "../../config/config";
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
 	background: ${({ backdrop }) =>
 		backdrop ? `url(${IMAGE_URL}${BACKDROP_SIZE}${backdrop})` : "#000"};
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 500px;
-	width: 100%;
 	position: relative;
 	background-position: center;
+	animation: animateHeroImage 1s;
+
+	@keyframes animateHeroImage {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
 `;
 
-const Title = styled.h1`
-	font-size: 34px;
-	font-family: "Noto Serif", serif;
-	color: #585858;
+export const Content = styled.div`
+	max-width: var(--maxWidth);
+	margin: 0 auto;
+	padding: 20px;
 `;
 
-const InfoWrapper = styled.div`
-	padding-top: 50px;
-	padding-left: 145px;
-	padding-right: 130px;
+export const Text = styled.div`
+	z-index: 100;
+	max-width: 700px;
+	position: absolute;
+	bottom: 30px;
+	min-height: 100px;
+	color: var(--white);
+	h1 {
+		font-size: var(--fontSuperBig);
+		@media screen and (max-width: 720px) {
+			font-size: var(--fontBig);
+		}
+	}
+	p {
+		margin-top: 10px;
+		font-size: var(--fontMedium);
+		color: var(--lightGray);
+		@media screen and (max-width: 720px) {
+			fonts-size: var(--fontSmall);
+		}
+	}
+	@media screen and (max-width: 720px) {
+		max-width: 100%;
+	}
 `;
-
-const Text = styled.p`
-	font-family: "Roboto", sans-serif;
-	color: #585858;
-	margin-top: 20px;
-`;
-
-export { Wrapper, Title, Text, InfoWrapper };

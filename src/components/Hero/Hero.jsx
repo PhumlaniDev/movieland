@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Wrapper, Title, Text, InfoWrapper } from "./Hero.styled";
+import { Wrapper, Content, Text } from "./Hero.styled";
 
-const Hero = ({ backdrop, title, text }) => {
+const Hero = ({ backdrop, title, overview }) => {
 	return (
 		<Wrapper backdrop={backdrop}>
-			<InfoWrapper>
-				<Title>{title}</Title>
-				<Text>{text}</Text>
-			</InfoWrapper>
+			<Content>
+				<Text>
+					<h1>{title}</h1>
+					<p>{overview}</p>
+				</Text>
+			</Content>
 		</Wrapper>
 	);
 };
@@ -16,7 +18,7 @@ const Hero = ({ backdrop, title, text }) => {
 Hero.prototype = {
 	backdrop: PropTypes.string,
 	title: PropTypes.string,
-	text: PropTypes.string,
+	overview: PropTypes.string,
 };
 
 export default Hero;
