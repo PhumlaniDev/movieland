@@ -1,26 +1,29 @@
 import { useState, useEffect } from "react";
-import API from "../API/api";
-import { isPersistedSate } from "../helpers/helpers";
+// API
+import API from "../api/api";
+// Helpers
+import { isPersistedState } from "../helpers/helpers";
 
-const initialSate = {
+const initialState = {
 	page: 0,
 	results: [],
 	total_pages: 0,
 	total_results: 0,
 };
 
-const HomeFetch = () => {
-	const [searchQuery, setSearchQuery] = useState("");
-	const [state, setState] = useState(initialSate);
+export const useHomeFetch = () => {
+	const [searchTerm, setSearchTerm] = useState("");
+	const [state, setState] = useState(initialState);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-	const fetchMovies = async (page, searchQuery = "") => {
+	const fetchMovies = async (page, searchTerm = "") => {
 		try {
 			setError(false);
 			setLoading(true);
-			const movies = await API.fetchMovies(searchQuery, page);
+			const movies = await API.fetchMovies(searchTerm, page);
+			//   console.log(movies);
 			setState((prev) => ({
 				...movies,
 				results:
@@ -32,50 +35,40 @@ const HomeFetch = () => {
 		setLoading(false);
 	};
 
-	// Initial page/first page
+	// Initial
 	useEffect(() => {
 		fetchMovies(1);
 	}, []);
 
-	// Search Movies
+	// Search
 	useEffect(() => {
-		if (!searchQuery) {
-			const sessionSate = isPersistedSate("homeMovieState");
+		if (!searchTerm) {
+			const sessionState = isPersistedState("homeState");
 
-			if (sessionSate) {
-				setState(sessionSate);
+			if (sessionState) {
+				setState(sessionState);
 				return;
 			}
 		}
-		setState(initialSate);
-		fetchMovies(1, searchQuery);
-	}, [searchQuery]);
+		setState(initialState);
+		fetchMovies(1, searchTerm);
+	}, [searchTerm]);
 
-	// Load More Movie
+	// Load More Button
 	useEffect(() => {
 		if (!isLoadingMore) {
 			return;
 		}
-
-		fetchMovies(state.page + 1, searchQuery);
+		fetchMovies(state.page + 1, searchTerm);
 		setIsLoadingMore(false);
-	}, [isLoadingMore, searchQuery, state.page]);
+	}, [isLoadingMore, searchTerm, state.page]);
 
-	// Cache data to storage
+	// Write to sessionStorage
 	useEffect(() => {
-		if (!searchQuery) {
-			return sessionStorage.setItem("homeMovieState", JSON.stringify(state));
+		if (!searchTerm) {
+			return sessionStorage.setItem("homeState", JSON.stringify(state));
 		}
-	}, [searchQuery, state]);
+	}, [searchTerm, state]);
 
-	return {
-		state,
-		loading,
-		error,
-		searchQuery,
-		setSearchQuery,
-		setIsLoadingMore,
-	};
+	return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
 };
-
-export default HomeFetch;

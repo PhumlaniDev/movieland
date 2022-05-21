@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-const Image = styled.img`
+export const Image = styled.img`
 	width: 100%;
-	max-width: 720px;
+	max-width: 520px;
 	border-radius: 20px;
 	transition: all 0.3s;
 	object-fit: cover;
-	height: 330px;
+	height: ${({ movieHeight }) => (movieHeight ? `400px` : `auto`)};
 	animation: animateThumb 0.5s;
 	:hover {
 		opacity: 0.8;
@@ -20,5 +20,3 @@ const Image = styled.img`
 		}
 	}
 `;
-
-export default Image;

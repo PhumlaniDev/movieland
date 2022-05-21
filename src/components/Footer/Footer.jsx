@@ -1,13 +1,18 @@
 import React from "react";
-import { Wrapper, Logo, TmdbLogo } from "./Footer.styles";
-import logo from "../../images/TMDB Logo.svg";
+import { Wrapper, Text, Logo } from "./Footer.styles";
+import logo from "../../images/logo2.svg";
 
 const Footer = () => {
+	const date = new Date();
+	const currentYear = date.getFullYear();
+
 	return (
-		<Wrapper>
-			<Logo>© PhumlaniDev</Logo>
-			<TmdbLogo src={logo} />
-		</Wrapper>
+		<>
+			<Wrapper>
+				<Text>©PhumlaniDev {currentYear}</Text>
+				<Logo src={logo} />
+			</Wrapper>
+		</>
 	);
 };
 

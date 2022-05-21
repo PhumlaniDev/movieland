@@ -1,7 +1,13 @@
 import React from "react";
+
+// Routing
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Header from "./components/Header/Header";
+// Context
+import UserProvider from "./context/context";
+
+import "./App.css";
+
 import Home from "./components/Home";
 import Movie from "./components/Movie";
 
@@ -9,11 +15,12 @@ function App() {
 	return (
 		<>
 			<Router>
-				<Header />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/:movieId" element={<Movie />} />
-				</Routes>
+				<UserProvider>
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/:movieId" element={<Movie />} />
+					</Routes>
+				</UserProvider>
 			</Router>
 		</>
 	);

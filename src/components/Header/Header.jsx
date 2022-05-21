@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
-import PropTypes from "prop-types";
-import { Logo, Input, InputWrapper, TMDBLogo } from "./Header.styles";
-import logo from "../../images/TMDB Logo.svg";
+import { useEffect, useRef, useState } from "react";
+import { Wrapper, Title, Input, Logo } from "./Header.styles";
 
-const Header = ({ setSearchQuery }) => {
+import logo from "../../images/logo1.svg";
+import { Link } from "react-router-dom";
+
+const Header = ({ setSearchTerm }) => {
 	const [state, setState] = useState("");
-
-	const handleChange = (event) => {
-		setState(event.currentTarget.value);
+	const handleChange = (e) => {
+		setState(e.currentTarget.value);
 	};
 
 	const initial = useRef(true);
@@ -18,28 +18,30 @@ const Header = ({ setSearchQuery }) => {
 			return;
 		}
 		const timer = setTimeout(() => {
-			setSearchQuery(state);
+			setSearchTerm(state);
 		}, 500);
 		return () => clearTimeout(timer);
-	}, [setSearchQuery, state]);
+	}, [setSearchTerm, state]);
 
 	return (
 		<>
-			<InputWrapper>
-				<Logo>Movie Land</Logo>
+			<Wrapper>
+				<Link to="/" style={{ textDecoration: "none" }}>
+					<Title>Movie Land</Title>
+				</Link>
+
 				<Input
-					type={"text"}
-					placeholder={"Search Movie"}
+					type="text"
+					placeholder="Search Movie"
 					onChange={handleChange}
 					value={state}
 				/>
-				<TMDBLogo src={logo} />
-			</InputWrapper>
+				<a target="_blank" href="https://www.themoviedb.org/" rel="noreferrer">
+					<Logo src={logo} />
+				</a>
+			</Wrapper>
 		</>
 	);
 };
 
-Input.prototype = {
-	callback: PropTypes.func,
-};
 export default Header;
