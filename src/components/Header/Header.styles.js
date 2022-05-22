@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
 	height: 10vh;
-	background: #000;
+	background: #011936;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;

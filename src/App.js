@@ -10,6 +10,7 @@ import "./App.css";
 
 import Home from "./components/Home";
 import Movie from "./components/Movie";
+import Footer from "./components/Footer/Footer";
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 						<Route path="/:movieId" element={<Movie />} />
 					</Routes>
 				</UserProvider>
+				<Footer />
 			</Router>
 		</>
 	);

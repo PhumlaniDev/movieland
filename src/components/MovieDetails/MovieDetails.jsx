@@ -22,7 +22,7 @@ const MovieDetails = ({ movie }) => {
 						<p>{movie.status}</p>
 					</Date>
 					<h1>{movie.original_title}</h1>
-					<p>{movie.overview}</p>
+					<p>{movie.overview.toString().substring(0, 220) + " " + "..."}</p>
 					<hr />
 					<Genre>
 						{movie.genres.map((genre) => (
