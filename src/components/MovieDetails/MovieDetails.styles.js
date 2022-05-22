@@ -32,6 +32,7 @@ const Content = styled.div`
 	height: 300px;
 	bottom: 0;
 	padding: 20px;
+	color: #fff;
 `;
 
 const Date = styled.div`
@@ -70,6 +71,10 @@ const RateAverage = styled.div`
 	align-content: space-between;
 	justify-content: space-between;
 	padding-top: 10px;
+
+	.languages p {
+		padding-left: 10px;
+	}
 `;
 
 export { Wrapper, Content, Date, Genre, TimeBudget, RateAverage };

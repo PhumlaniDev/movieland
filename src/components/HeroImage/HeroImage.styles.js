@@ -23,53 +23,35 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 20px;
+`;
+
+const Text = styled.div`
+	z-index: 100;
+	max-width: 700px;
 	position: absolute;
-	background-color: rgba(70, 83, 98, 0.7);
-	margin-bottom: 5vh;
-	margin-left: 5vw;
-	width: 400px;
-	height: 216px;
-	bottom: 0;
-	padding: 5px;
-	color: #a9a9a9;
-`;
-
-const Date = styled.div`
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-content: space-between;
-	justify-content: space-between;
-`;
-
-const Genre = styled.div`
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-content: space-between;
-	justify-content: flex-start;
-
+	bottom: 30px;
+	min-height: 100px;
+	color: #fff;
+	h1 {
+		font-size: 2.5rem;
+		@media screen and (max-width: 720px) {
+			font-size: 1.5rem;
+		}
+	}
 	p {
-		padding-right: 10px;
+		margin-top: 10px;
+		font-size: 1.1rem;
+		color: #eee;
+		@media screen and (max-width: 720px) {
+			fonts-size: 0.9rem;
+		}
+	}
+	@media screen and (max-width: 720px) {
+		max-width: 100%;
 	}
 `;
 
-const TimeBudget = styled.div`
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-content: space-between;
-	justify-content: space-between;
-	padding-top: 10px;
-`;
-
-const RateAverage = styled.div`
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-content: space-between;
-	justify-content: space-between;
-	padding-top: 10px;
-`;
-
-export { Wrapper, Content, Date, Genre, TimeBudget, RateAverage };
+export { Wrapper, Content, Text };

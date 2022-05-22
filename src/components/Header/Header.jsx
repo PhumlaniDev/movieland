@@ -4,7 +4,7 @@ import { Wrapper, Title, Input, Logo } from "./Header.styles";
 import logo from "../../images/logo1.svg";
 import { Link } from "react-router-dom";
 
-const Header = ({ setSearchTerm }) => {
+const Header = ({ setSearchTerm, shown }) => {
 	const [state, setState] = useState("");
 	const handleChange = (e) => {
 		setState(e.currentTarget.value);
@@ -30,12 +30,15 @@ const Header = ({ setSearchTerm }) => {
 					<Title>Movie Land</Title>
 				</Link>
 
-				<Input
-					type="text"
-					placeholder="Search Movie"
-					onChange={handleChange}
-					value={state}
-				/>
+				{shown ? (
+					<Input
+						type="text"
+						placeholder="Search Movie"
+						onChange={handleChange}
+						value={state}
+					/>
+				) : null}
+
 				<a target="_blank" href="https://www.themoviedb.org/" rel="noreferrer">
 					<Logo src={logo} />
 				</a>

@@ -24,11 +24,11 @@ const MovieDetails = ({ movie }) => {
 					<h1>{movie.original_title}</h1>
 					<p>{movie.overview}</p>
 					<hr />
-					{/* <Genre>
+					<Genre>
 						{movie.genres.map((genre) => (
-							<p>{movie.genre}</p>
+							<p key={genre.id}>{genre.name}</p>
 						))}
-					</Genre> */}
+					</Genre>
 					<TimeBudget>
 						<p>{calcTime(movie.runtime)}</p>
 						<p>{convertMoney(movie.budget)}</p>
@@ -36,6 +36,14 @@ const MovieDetails = ({ movie }) => {
 					<RateAverage>
 						<p>Rating</p>
 						<p>Language</p>
+					</RateAverage>
+					<RateAverage>
+						{movie.vote_average}
+						<RateAverage className="languages">
+							{movie.spoken_languages.map((language, index) => (
+								<p key={index}>{language.name}</p>
+							))}
+						</RateAverage>
 					</RateAverage>
 				</Content>
 				<div>
