@@ -7,6 +7,7 @@ import Header from "./Header/Header";
 import Grid from "./Grid/Grid";
 import Card from "./Card/Card";
 import Spinner from "./Spinner/Spinner";
+import Button from "./Button/Button";
 
 import NoImage from "../images/No-Image.png";
 
@@ -47,6 +48,11 @@ const Home = () => {
 					/>
 				))}
 			</Grid>
+
+			{loading && <Spinner />}
+			{state.page < state.total_pages && !loading && (
+				<Button callback={() => setIsLoadingMore(true)}> Load More</Button>
+			)}
 		</>
 	);
 };
