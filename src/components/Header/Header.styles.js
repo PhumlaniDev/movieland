@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
 	font-size: 1.5em;
-	color: rgb(235 235 235)
+	color: #fff;
 	font-family: "Iceland", cursive;
 `;
 
